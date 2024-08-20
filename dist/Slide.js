@@ -1,14 +1,28 @@
 export default class Slide {
     container;
-    elements;
+    slides;
     controls;
     time;
-    constructor(container, elements, controls, time = 5000) {
+    index;
+    slide;
+    constructor(container, slides, controls, time = 5000) {
         this.container = container;
-        this.elements = elements;
+        this.slides = slides;
         this.controls = controls;
         this.time = time;
-        console.log(elements, container, controls, time);
+        this.index = 0;
+        this.slide = this.slides[this.index];
+        console.log(slides, container, controls, time);
+        this.show(0);
+    }
+    show(index) {
+        this.index = index;
+        this.slide = this.slides[this.index];
+        this.slides.forEach((slide) => this.hide(slide));
+        this.slide.classList.add("active");
+    }
+    hide(element) {
+        element.classList.remove("active");
     }
 }
 //# sourceMappingURL=Slide.js.map

@@ -1,9 +1,9 @@
 import Slide from "./Slide.js";
 
 const container = document.getElementById("slide");
-const elements = document.getElementById("slide-elements");
+const slides = document.getElementById("slide-elements");
 const controls = document.getElementById("slide-controls");
 
-if (container && elements && controls && elements.children.length > 0) {
-  new Slide(container, Array.from(elements.children), controls, 3000);
+if (container && slides && controls && slides.children.length > 0) {
+  new Slide(container, Array.from(slides.children), controls, 3000);
 }
