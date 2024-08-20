@@ -20,9 +20,7 @@ export default class Slide {
     this.index = 0;
     this.slide = this.slides[this.index];
 
-    console.log(slides, container, controls, time);
-
-    this.show(0);
+    this.init();
   }
 
   show(index: number) {
@@ -35,5 +33,33 @@ export default class Slide {
 
   hide(element: Element) {
     element.classList.remove("active");
+  }
+
+  private init() {
+    this.addControls();
+    this.show(this.index);
+  }
+
+  private addControls() {
+    const prevButton = document.createElement("button");
+    const nextButton = document.createElement("button");
+
+    this.controls.appendChild(prevButton);
+    this.controls.appendChild(nextButton);
+    prevButton.innerText = "Slide anterior";
+    nextButton.innerText = "Próximo slide";
+
+    prevButton.addEventListener("pointerup", () => this.prev());
+    nextButton.addEventListener("pointerup", () => this.next());
+  }
+
+  prev() {
+    const prev = this.index > 0 ? this.index - 1 : this.slides.length - 1;
+    this.show(prev);
+  }
+
+  next() {
+    const next = this.index + 1 < this.slides.length ? this.index + 1 : 0;
+    this.show(next);
   }
 }
